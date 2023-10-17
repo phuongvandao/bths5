@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <div  class="header">
+            <div class="header__title">
+                <h2>Đăng ký</h2>
+            </div>
+        </div>
+        <form
+            action=""
+            class="form"
+            onsubmit="onSubmitForm(this);
+            return false;"
+        >
+            <div class="form__username">
+                <div class="form__username--icon form__icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form__username--input form__input">
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Username"
+                        name="username"
+                    />
+                </div>
+            </div>
+            <p id="errorUsername" ></p>
+            <div class="form__email">
+                <div class="form__email--icon form__icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form__email--input form__input">
+                    <input 
+                        type="email"
+                        id="emal"
+                        placeholder="Email"
+                        name="email"
+                    />
+                </div>
+            </div>
+            <div class="form__phone">
+                <div class="form__phone--icon form__icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="form__phone--input form__input">
+                    <input type="tel"
+                           id="phone"
+                           placeholder="Phone number"
+                           name="phone"/>
+                </div>
+            </div>
+            <div class="form__password">
+                <div class="form__password--icon form__icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form__password--input form__input">
+                    <input type="password"id="password"placeholder="Password"name="password"/>   
+                 </div>
+            </div>
+            <p></p>
+            <p id="errorPassword" ></p>
+            <div class="form__submit">
+                <button type="submit">
+                    <i class="fas fa-arrow-right"> Đăng ký</i>
+                </button>
+            </div>
+        </form>
+        
+    </div>
+
+<script >
+
+const inputPassword = document.getElementById("password");
+const inputEmail = document.getElementById("email");
+const inputUsername = document.getElementById("username");
+// VALIDATION FORM LOGIN
+const checkUsername = (username) => {
+    if (!username) return "Hãy nhập Username !";
+    else if (username.length < 5)
+        return "Username cần chưa tối thiểu 5 kí tự !";
+    else return true;
+};
+
+const checkPassword = (password) => {
+    if (!password) return "Hãy nhập Password !";
+    else if (password.length < 5)
+        return "Password cần chưa tối thiểu 5 kí tự !";
+    else return true;
+};
+const showError = (element, message) => {
+    element.style.display = "block";
+    element.innerHTML = message;
+    element.className = "message__error";
+}
+
+const hideError = (element) => {
+    element.style.display = "none";
+}
+const validation = (form) => {
+    const username = form.username.value;
+    const password = form.password.value;
+
+    const errorUsername = document.getElementById("errorUsername");
+
+    const errorPassword = document.getElementById("errorPassword");
+
+    // validation username;
+    let messageErrorUsername = checkUsername(username);
+    if (typeof messageErrorUsername === "string") {
+        showError(errorUsername,messageErrorUsername);
+    } else {
+        hideError(errorUsername);
+    }
+
+    // validation password;
+    let messageErrorPassword = checkPassword(password);
+    if(typeof messageErrorPassword === "string"){
+        showError(errorPassword,messageErrorPassword);
+    } else {
+        hideError(errorPassword);
+    }
+
+    if(messageErrorUsername === true && messageErrorPassword === true){
+        alert("Vào thôi");
+    }
+};
+
+</script>
+</body>
+</html>
